@@ -18,6 +18,7 @@ describe Project do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
       expect(project.id).to be_an_instance_of Integer
+      # expect(project.id).to eq "1"
     end
   end
 
