@@ -10,8 +10,10 @@ class Project
     @id = attributes.fetch(:id)
   end
 
-  def ==(another_project)
-    self.title().==(another_project.title()).&(self.id().==(another_project.id()))
+  def ==(other)
+    same_class = self.class().eql?(other.class())
+    same_title = self.title().eql?(other.title())
+    same_class.&(same_title)
   end
 
   def self.all
@@ -40,13 +42,26 @@ class Project
   end
 
   def volunteers
-    returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = #{@id}")
+    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id}")
+    volunteer_array = []
     returned_volunteers.each() do |volunteer|
       name = volunteer.fetch("name")
       project_id = volunteer.fetch("project_id")
       id = volunteer.fetch("id").to_i()
-      return Volunteer.new({:name => name, :project_id => project_id, :id => id})
+      volunteer_array.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
     end
+    return volunteer_array
   end
 
+  def update(attributes)
+    new_title = attributes.fetch(:title)
+    new_id = attributes.fetch(:id)
+    found_id = DB.exec("UPDATE projects SET title = '#{new_title}' WHERE title = '#{@title}' RETURNING id")
+    if found_id
+      @id = found_id
+      @title = new_title
+      return @title
+    end
+    return false
+  end
 end

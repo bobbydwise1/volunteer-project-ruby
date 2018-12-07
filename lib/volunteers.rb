@@ -11,8 +11,10 @@ class Volunteer
     @id = attributes.fetch(:id)
   end
 
-  def ==(another_volunteer)
-    self.name().==(another_volunteer.name()).&(self.id().==(another_volunteer.id()))
+  def ==(other)
+    same_class = self.class().eql?(other.class())
+    same_name = self.name().eql?(other.name())
+    same_class.&(same_name)
   end
 
   def self.all
