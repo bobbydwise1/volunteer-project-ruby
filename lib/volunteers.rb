@@ -1,5 +1,6 @@
 require('pg')
 require('pry')
+require('projects')
 
 class Volunteer
   attr_accessor :name, :project_id, :id

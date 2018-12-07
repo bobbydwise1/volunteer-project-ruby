@@ -1,5 +1,6 @@
 require('pg')
 require('pry')
+require('volunteers')
 
 class Project
   attr_accessor :title, :id
@@ -26,7 +27,7 @@ class Project
 
   def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id")
-    @id = result.first().fetch("id").to_i()
+    @id = result.first().fetch("id").to_i
   end
 
   def self.find(id)
@@ -35,6 +36,16 @@ class Project
       title = project.fetch("title")
       id = project.fetch("id").to_i()
       return Project.new({:title => title, :id => id})
+    end
+  end
+
+  def volunteers
+    returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = #{@id}")
+    returned_volunteers.each() do |volunteer|
+      name = volunteer.fetch("name")
+      project_id = volunteer.fetch("project_id")
+      id = volunteer.fetch("id").to_i()
+      return Volunteer.new({:name => name, :project_id => project_id, :id => id})
     end
   end
 
