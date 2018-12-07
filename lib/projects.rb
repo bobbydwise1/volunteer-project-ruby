@@ -58,10 +58,18 @@ class Project
     new_id = attributes.fetch(:id)
     found_id = DB.exec("UPDATE projects SET title = '#{new_title}' WHERE title = '#{@title}' RETURNING id")
     if found_id
-      @id = found_id
       @title = new_title
       return @title
     end
     return false
   end
+
+  def delete
+    found_id = DB.exec("DELETE FROM projects WHERE title = '#{@title}' RETURNING id")
+    if found_id
+      return true
+    end
+    return false
+  end
+
 end
