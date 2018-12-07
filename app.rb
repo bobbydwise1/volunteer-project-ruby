@@ -8,12 +8,11 @@ require('pry')
 DB = PG.connect({:dbname => 'volunteers_tracker'})
 
 get '/' do
-
   erb(:index)
 end
 
 get '/volunteer_management' do
-  @volunteers = Volunteer.volunteers_names
+  @volunteers = Volunteer.all
   @projects = Project.all
   erb(:volunteer_management)
 end
