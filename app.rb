@@ -5,7 +5,7 @@ require('./lib/projects')
 require('./lib/volunteers')
 require('pry')
 
-DB = PG.connect({:dbtitle => 'volunteers_tracker'})
+DB = PG.connect({:dbname => 'volunteers_tracker'})
 
 get '/' do
 

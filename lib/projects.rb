@@ -14,7 +14,7 @@ class Project
   end
 
   def self.all
-    returned_projects = DB.exec("SELECT * FROM volunteer_tracker;")
+    returned_projects = DB.exec("SELECT * FROM projects")
     projects = []
     returned_projects.each do |each|
       title = each.fetch("title")
@@ -25,12 +25,12 @@ class Project
   end
 
   def save
-    result = DB.exec("INSERT INTO volunteer_tracker (title, ) VALUES ('#{@title}') RETURNING id")
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id")
     @id = result.first().fetch("id").to_i()
   end
 
   def self.find(id)
-    returned_projects = DB.exec("SELECT * FROM volunteer_tracker WHERE id = #{id}")
+    returned_projects = DB.exec("SELECT * FROM projects WHERE id = #{id}")
     returned_projects.each() do |project|
       title = project.fetch("title")
       id = project.fetch("id").to_i()
