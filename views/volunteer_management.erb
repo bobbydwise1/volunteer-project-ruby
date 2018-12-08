@@ -9,7 +9,7 @@
         <h3>Add Author</h3>
       </div>
       <div class="row">
-        <form class="" action="/author_management" method="post">
+        <form class="" action="/volunteer_management" method="post">
           <div class="form-group">
             <input type="text" name="name" placeholder="Author">
           </div>
@@ -27,8 +27,8 @@
 
     <div class="col">
       <ul>
-        <% @authors.each do |author| %>
-          <li><%= author.id %><%= author.name %></li>
+        <% @volunteers.each do |volunteer| %>
+          <li><%= volunteer.id %><%= volunteer.name %></li>
           <% end %>
       </ul>
     </div>

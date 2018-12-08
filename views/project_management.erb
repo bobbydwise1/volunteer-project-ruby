@@ -9,7 +9,7 @@
         <h3>Add Book</h3>
       </div>
       <div class="row">
-        <form class="" action="/book_management" method="post">
+        <form class="" action="/project_management" method="post">
           <div class="form-group">
             <input type="text" name="title" placeholder="Book Title">
           </div>
@@ -18,7 +18,7 @@
             <input type="text" name="author" placeholder="Author">
           </div>
 
-          <button type="submit">Add book</button>
+          <button type="submit">Add project</button>
         </form>
       </div>
 
@@ -31,8 +31,8 @@
 
     <div class="col">
       <ul>
-        <% @books.each do |book| %>
-          <li><%= book.fetch('title') %>, <%= book.fetch('name') %></li>
+        <% @projects.each do |project| %>
+          <li><%= project.fetch('id') %>, <%= project.fetch('title') %></li>
           <% end %>
       </ul>
     </div>

@@ -1,6 +1,5 @@
 require('pg')
 require('pry')
-require('volunteers')
 
 class Project
   attr_accessor :title, :id
