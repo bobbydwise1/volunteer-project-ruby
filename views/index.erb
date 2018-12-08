@@ -5,7 +5,7 @@
 
       <div class="container">
         <h5>Define a new project here:</h5>
-        <form action="/project" method="post">
+        <form action="/project_add" method="post">
           <div>
             <label for="title">Enter a new Project title:</label>
             <input id="title" class="form-control" type="text" name="title" pattern="[a-zA-Z\d\s]{1,20}">
@@ -14,7 +14,7 @@
           <hr></hr>
 
           <div class="button">
-          <button type="button submit" name="button" title="Add a new title to the list!">Create Project</button>
+          <button type="button submit" name="button">Create Project</button>
           </div>
         </form>
       </div>
@@ -25,9 +25,9 @@
         <% if @projects %>
           <ul>
             <% @projects.each do |project| %>
-              <li><%= project.fetch('id') %>, <%= project.fetch('title') %></li>
+              <li><%= project.fetch('id') %>, <%= project.fetch('title')%></li>
+            </ul>
             <% end %>
-          </ul>
         <% end %>
       </div>
 
