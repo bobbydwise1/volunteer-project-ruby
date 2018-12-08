@@ -3,19 +3,33 @@
     <div class="col container">
       <h1>Projects</h1>
 
-      <a href="/project_view"> <button type="button">View Projects</button> </a>
+      <div class="container">
+        <h5>Define a new project here:</h5>
+        <form action="/project" method="post">
+          <div>
+            <label for="title">Enter a new Project title:</label>
+            <input id="title" class="form-control" type="text" name="title" pattern="[a-zA-Z\d\s]{1,20}">
+          </div>
+
+          <hr></hr>
+
+          <div class="button">
+          <button type="button submit" name="button" title="Add a new title to the list!">Create Project</button>
+          </div>
+        </form>
+      </div>
 
       <hr></hr>
 
-      <a href="/project_add"> <button type="button">Add New Project</button> </a>
-
-      <hr></hr>
-
-      <a href="/project_update"> <button type="button">Update Project</button> </a>
-
-      <hr></hr>
-
-      <a href="/project_delete"> <button type="button">Delete Project</button> </a>
+      <div>
+        <% if @projects %>
+          <ul>
+            <% @projects.each do |project| %>
+              <li><%= project.fetch('id') %>, <%= project.fetch('title') %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
 
     </div>
 <!------------------------------------------------->
