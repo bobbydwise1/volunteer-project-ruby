@@ -63,11 +63,8 @@ class Project
   end
 
   def delete
-    found_id = DB.exec("DELETE FROM projects WHERE title = '#{@title}' RETURNING id")
-    if found_id
-      return true
-    end
-    return false
+    DB.exec("DELETE FROM projects WHERE id = #{self.id.to_i}")
+    DB.exec("DELETE FROM volunteers WHERE project_id = #{@self.id}")
   end
 
 end

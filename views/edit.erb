@@ -19,8 +19,18 @@
           <label for="title">Update the current project title:</label>
           <input id="title" class="form-control" type="text" name="title">
           <div class="button">
-            <button type="submit" name="button">Update Project</button>
+            <button type="submit">Update Project</button>
           </div>
+        </form>
+      </div>
+
+      <hr></hr>
+
+      <div>
+        <form action="/projects/<%=@current_project.id%>/edit" method="post">
+          <input name="_method" type="hidden" value="delete">
+
+          <button type="submit">Delete Project</button>
         </form>
       </div>
 

@@ -25,16 +25,12 @@ end
 get '/projects/:id' do
   id = params.fetch(:id).to_i
   @current_project = Project.find(id)
-  @volunteers = Volunteer.all
-  @projects = Project.all
   erb(:projects)
 end
 
 get '/projects/:id/edit' do
   id = params.fetch(:id).to_i
   @current_project = Project.find(id)
-  @volunteers = Volunteer.all
-  @projects = Project.all
   erb(:edit)
 end
 
@@ -43,17 +39,17 @@ patch '/projects/:id/edit' do
   title = params.fetch("title")
   @current_project = Project.find(params.fetch("id").to_i)
   @current_project.update({:title => title})
-  # @volunteers = Volunteer.all
-  # @projects = Project.all
   erb(:projects)
 end
 
-# get '/project_update' do
-#   @volunteers = Volunteer.all
-#   @projects = Project.all()
-#   erb(:project_update)
-# end
-#
+delete '/projects/:id/edit' do
+  id = params.fetch(:id).to_i
+  @current_project = Project.find(params.fetch("id").to_i)
+  binding.pry
+  @current_project.delete
+  erb(:index)
+end
+
 # post '/project_update' do
 #   volunteer_name = params.fetch('volunteer_name')
 #   project_title = params.fetch('title')
