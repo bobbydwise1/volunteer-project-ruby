@@ -27,7 +27,7 @@
               <% @projects.each do |project| %>
               <form id="form_<%= project.id %>" action="/project_management/<%= project.id %>" method="get">
                   <li>
-                    <button id="button_project<%= project.id %>" type="submit" name="select" value="<%= project.id %>">Edit: </button><%= project.title %>
+                    <button id="Edit_Project<%= project.id %>" type="submit" name="select" value="<%= project.id %>">Edit: </button><%= project.title %>
                   </li>
                 </form>
               <% end %>

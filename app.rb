@@ -27,6 +27,7 @@ end
 
 get '/project_management/:id' do
   id = params[:id]
+  @current_project = Project.find(id)
   @volunteers = Volunteer.all
   @projects = Project.all
   erb(:project_management)
