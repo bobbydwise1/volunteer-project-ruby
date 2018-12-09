@@ -4,6 +4,10 @@ also_reload('lib/**/*.rb')
 require('./lib/projects')
 require('./lib/volunteers')
 require('pry')
+require "capybara/rspec"
+
+Capybara.app = Sinatra::Application
+set(:show_exceptions, false)
 
 DB = PG.connect({:dbname => 'volunteers_tracker'})
 
@@ -32,12 +36,13 @@ end
 
 patch '/project_management/:id' do
   id = params.fetch(:id).to_i
-  new_title = params.fetch('title')
-  @current_project = Project.find(id)
-  @current_project.update({:title => new_title, :id => id})
-  @volunteers = Volunteer.all
-  @projects = Project.all
-  erb(:index)
+  title = params.fetch("title")
+  @current_project = Project.find(params.fetch("id").to_i)
+  binding.pry
+  @current_project.update({:title => title})
+  # @volunteers = Volunteer.all
+  # @projects = Project.all
+  erb(:project_management)
 end
 
 # get '/project_update' do

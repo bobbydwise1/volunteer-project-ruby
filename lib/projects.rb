@@ -54,9 +54,8 @@ class Project
 
   def update(attributes)
     new_title = attributes.fetch(:title)
-    new_id = attributes.fetch(:id)
-    found_id = DB.exec("UPDATE projects SET title = '#{new_title}' WHERE id = '#{new_id}' RETURNING id")
-    if found_id != "null"
+    found_id = DB.exec("UPDATE projects SET title = '#{new_title}' WHERE id = #{@id} RETURNING id")
+    if found_id
       @title = new_title
       return @title
     end
