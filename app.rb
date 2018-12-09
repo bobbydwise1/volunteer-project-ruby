@@ -30,7 +30,15 @@ get '/project_management/:id' do
   erb(:project_management)
 end
 
-patch '/project_management/:id' do
+get '/project_management/:id/project_edit' do
+  id = params.fetch(:id).to_i
+  @current_project = Project.find(id)
+  @volunteers = Volunteer.all
+  @projects = Project.all
+  erb(:project_edit)
+end
+
+patch '/project_management/:id/project_edit' do
   id = params.fetch(:id).to_i
   title = params.fetch("title")
   @current_project = Project.find(params.fetch("id").to_i)

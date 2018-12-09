@@ -9,27 +9,18 @@
         <p><b>title: </b><%=@current_project.title%></p>
 
       </div>
+
+      <hr></hr>
+
       <div>
-        <form action="/project_management/<%= @current_project.id %>" method="post">
-          <input name="_method" type="hidden" value="patch">
-          <label for="title">Update the current project title:</label>
-          <input id="title" class="form-control" type="text" name="title">
-          <a href="#" onclick="this.parentNotde.submit()">Edit Project</a>
-        </form>
+
+        <a href="/project_management/<%=@current_project.id%>/project_edit">Edit Project</a>
+
       </div>
 
       <hr></hr>
 
-      <form action="/project_management" method="post">
-        <input name="_method" type="hidden" value="delete">
-        <div class="button">
-          <button type="submit" name="button">Delete Project</button>
-        </div>
-      </form>
-
-      <hr></hr>
-
-      <a href="/">Return to Main Index Page</a>
+      <a href="/">Index</a>
 
     </div>
   </div>
