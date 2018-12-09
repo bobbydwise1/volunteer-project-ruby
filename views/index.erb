@@ -5,7 +5,7 @@
 
       <div class="container">
         <h5>Define a new project here:</h5>
-        <form action="/project_add" method="post">
+        <form action="/" method="post">
           <div>
             <label for="title">Enter a new Project title:</label>
             <input id="title" class="form-control" type="text" name="title">
@@ -31,7 +31,7 @@
           <% if @projects != nil %>
               <% @projects.each do |project| %>
                   <li>
-                    <a href="/project_management/<%= project.id %>"><%= project.id %>, <%= project.title %></a>
+                    <a href="/projects/<%= project.id %>"><%= project.id %>, <%= project.title %></a>
                   </li>
                 </form>
               <% end %>
