@@ -30,9 +30,8 @@
         <ul>
           <% if @projects != nil %>
               <% @projects.each do |project| %>
-              <form id="form_<%= project.id %>" action="/project_management/<%= project.id %>" method="get">
                   <li>
-                    <button id="Edit_Project<%= project.id %>" type="submit" name="select" value="<%= project.id %>">Edit: </button><%= project.id %>, <%= project.title %>
+                    <a href="/project_management/<%= project.id %>"><%= project.id %>, <%= project.title %></a>
                   </li>
                 </form>
               <% end %>
