@@ -8,7 +8,7 @@
         <form action="/project_add" method="post">
           <div>
             <label for="title">Enter a new Project title:</label>
-            <input id="title" class="form-control" type="text" name="title" pattern="[a-zA-Z\d\s]{1,20}">
+            <input id="title" class="form-control" type="text" name="title">
           </div>
 
           <hr></hr>
@@ -22,13 +22,13 @@
       <hr></hr>
 
       <div>
-        <% if @projects %>
-          <ul>
+        <ul>
+        <% if @projects != nil %>
             <% @projects.each do |project| %>
-              <li><%= project.fetch('id') %>, <%= project.fetch('title')%></li>
-            </ul>
+              <li><%= project.id %>, <%= project.title %></li>
             <% end %>
         <% end %>
+      </ul>
       </div>
 
     </div>
