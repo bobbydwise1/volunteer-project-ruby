@@ -45,8 +45,9 @@ end
 delete '/projects/:id/edit' do
   id = params.fetch(:id).to_i
   @current_project = Project.find(params.fetch("id").to_i)
-  binding.pry
   @current_project.delete
+  @volunteers = Volunteer.all
+  @projects = Project.all
   erb(:index)
 end
 
