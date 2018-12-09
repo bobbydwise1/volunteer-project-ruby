@@ -14,10 +14,7 @@ get '/' do
 end
 
 post '/project_add' do
-  # volunteer_name = params.fetch('volunteer_name')
   project_title = params.fetch('title')
-  # new_volunteer = Volunteer.new({:volunteer_name => volunteer_name, :project_id => project_id, :id => nil})
-  # new_volunteer.save
   new_project = Project.new({:title => project_title, :id => nil})
   project_id = new_project.save
   @volunteers = Volunteer.all
@@ -26,23 +23,21 @@ post '/project_add' do
 end
 
 get '/project_management/:id' do
-  id = params[:id]
+  id = params.fetch(:id).to_i
   @current_project = Project.find(id)
   @volunteers = Volunteer.all
   @projects = Project.all
   erb(:project_management)
 end
 
-post '/project_management/:id' do
-  volunteer_name = params.fetch('volunteer_name')
-  project_title = params.fetch('title')
-  new_volunteer = Volunteer.new({:volunteer_name => volunteer_name, :project_id => project_id, :id => nil})
-  new_volunteer.save
-  new_project = Project.new({:title => project_title, :id => nil})
-  project_id = new_project.save
+patch '/project_management/:id' do
+  id = params.fetch(:id).to_i
+  new_title = params.fetch('title')
+  @current_project = Project.find(id)
+  @current_project.update({:title => new_title, :id => id})
   @volunteers = Volunteer.all
   @projects = Project.all
-  erb(:project_update)
+  erb(:index)
 end
 
 # get '/project_update' do

@@ -17,7 +17,7 @@ class Volunteer
   end
 
   def self.all
-    returned_volunteers = DB.exec("SELECT * FROM volunteers;")
+    returned_volunteers = DB.exec("SELECT * FROM volunteers ORDER BY id")
     volunteers = []
     returned_volunteers.each do |each|
       name = each.fetch("name")

@@ -16,7 +16,7 @@ class Project
   end
 
   def self.all
-    returned_projects = DB.exec("SELECT * FROM projects")
+    returned_projects = DB.exec("SELECT * FROM projects ORDER BY id")
     projects = []
     returned_projects.each do |each|
       title = each.fetch("title")
@@ -35,7 +35,7 @@ class Project
     returned_projects = DB.exec("SELECT * FROM projects WHERE id = #{id}")
     returned_projects.each() do |project|
       title = project.fetch("title")
-      id = project.fetch("id").to_i()
+      id = project.fetch("id").to_i
       return Project.new({:title => title, :id => id})
     end
   end
@@ -55,8 +55,8 @@ class Project
   def update(attributes)
     new_title = attributes.fetch(:title)
     new_id = attributes.fetch(:id)
-    found_id = DB.exec("UPDATE projects SET title = '#{new_title}' WHERE title = '#{@title}' RETURNING id")
-    if found_id
+    found_id = DB.exec("UPDATE projects SET title = '#{new_title}' WHERE id = '#{new_id}' RETURNING id")
+    if found_id != "null"
       @title = new_title
       return @title
     end
