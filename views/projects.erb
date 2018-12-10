@@ -23,10 +23,11 @@
       <div>
         <h6>List of volunteers currently assigned to this project:</h6>
         <ul>
-          <% if @current_volunteers != [] %>
-              <% @currernt_volunteers.each do |volunteer| %>
+          <li><b>id# - name - project_id</b></li>
+          <% if @current_volunteers != nil %>
+              <% @current_volunteers.each do |volunteer| %>
                   <li>
-                    <a href="/volunteers/<%= volunteer.id %>"><%= volunteer.id %>, <%= volunteer.name %>,
+                    <a href="/volunteers/<%= volunteer.id %>/edit"><%= volunteer.id %>, <%= volunteer.name %>,
                       <% if volunteer.project_id != 0 %>
                       <%= volunteer.project_id %>
                       <% else %>
@@ -35,9 +36,15 @@
                     </a>
                   </li>
               <% end %>
+          <% else %>
+            <li>There are currently no volunteers assigned.</li>
           <% end %>
         </ul>
       </div>
+
+      <hr></hr>
+
+
 
       <hr></hr>
 

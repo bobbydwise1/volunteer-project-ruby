@@ -22,7 +22,9 @@
       <hr></hr>
 
       <div>
+        <h6>List of current projects:</h6>
         <ul>
+          <li><b>id# - title</b></li>
           <% if @projects != nil %>
               <% @projects.each do |project| %>
                   <li>
@@ -41,7 +43,7 @@
       <form action="/volunteer" method="post">
         <div>
           <label for="name">Enter a new Volunteer Name:</label>
-          <input id="name" class="form-control" type="text" name="name" placeholder="Last, First" pattern="[A-Z][a-z]+[/,][\s][A-Z][a-z]+" required title="Please put in a proper 'Lastname, Firstname'">
+          <input id="name" class="form-control" type="text" name="name" placeholder="First" pattern="[A-Z][a-z]+" required title="First letter must be capital.">
         </div>
 
         <hr></hr>
@@ -54,11 +56,13 @@
       <hr></hr>
 
       <div>
+        <h6>List of current volunteers:</h6>
         <ul>
+          <li><b>id# - name - project_id</b></li>
           <% if @volunteers != nil %>
               <% @volunteers.each do |volunteer| %>
                   <li>
-                    <a href="/volunteers/<%= volunteer.id %>"><%= volunteer.id %>, <%= volunteer.name %>,
+                    <a href="/volunteers/<%= volunteer.id %>/edit"><%= volunteer.id %>, <%= volunteer.name %>,
                       <% if volunteer.project_id != 0 %>
                       <%= volunteer.project_id %>
                       <% else %>

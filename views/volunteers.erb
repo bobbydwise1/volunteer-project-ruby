@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col container">
+      <h1>Volunteer</h1>
+
+      <div class="container">
+        <h5>The name of the current volunteer is:</h5>
+        <p><b>id: </b><%=@current_volunteer.id%></p>
+        <p><b>name: </b><%=@current_volunteer.name%></p>
+        <p><b>project_id: </b><%=@current_volunteer.project_id%></p>
+      </div>
+
+      <hr></hr>
+
+      <div>
+        <form action="/volunteers/<%=@current_volunteer.id%>/edit" method="post">
+          <input name="_method" type="hidden" value="patch">
+          <label for="name">Update the volunteer name:</label>
+          <input id="name" class="form-control" type="text" name="name" placeholder="First" pattern="[A-Z][a-z]+" required title="First letter must be capital.">
+          <div class="button">
+            <button type="submit">Update Volunteer</button>
+          </div>
+        </form>
+      </div>
+
+      <hr></hr>
+
+      <div>
+        <form action="/volunteers/<%=@current_volunteer.id%>/assign_project_id" method="post">
+          <input name="_method" type="hidden" value="patch">
+          <label for="name">Enter a project ID:</label>
+          <input id="project_id" class="form-control" type="number" name="project_id" placeholder="#" pattern="\D+" required title="Please put in a project id#">
+          <div class="button">
+            <button type="submit">Assign Project ID</button>
+          </div>
+        </form>
+      </div>
+
+      <hr></hr>
+
+      <div>
+        <form action="/volunteers/<%=@current_volunteer.id%>/edit" method="post">
+          <input name="_method" type="hidden" value="delete">
+
+          <button type="submit">Delete Volunteer</button>
+        </form>
+      </div>
+
+      <hr></hr>
+
+      <a href="/">Index</a>
+
+    </div>
+  </div>
+</div>
