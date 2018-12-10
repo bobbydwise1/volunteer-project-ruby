@@ -6,32 +6,45 @@
 
 ## Description
 
-_Create a website application that allows the user to keep track of volunteers for multiple projects.  This app uses Ruby, Sinatra Framework, Postgres, and an SQL database.  The integration testing for this app has already been written by somebody else, and the app must pass their testing code._
+_Create a website application that allows the user to keep track of volunteers for multiple projects.  This app uses Ruby, Sinatra Framework, Postgres, and an SQL database.  The integration testing for this app has already been written by the instructor, and the app must pass their specification testing code._
 
 ## Setup/Installation Requirements
 
-* Clone this repository using `git clone https://github.com/bobbydwise1/anagrams_antigrams.git`
-* Navigate to the downloaded repository using a terminal window.
-* Your computer must have Ruby installed.  In the terminal window at the working directory of the program, you will need to install some addtional Ruby Gems files.  Do this by putting this on the command line while connected to the internet:
+_Setup requires the installation of Ruby and Postgres.  An additional Ruby "gem" file installs additional dependencies:_
+
+* With an internet connection active, clone this repository by typing at the terminal window:
+
+  "$ git clone https://github.com/bobbydwise1/volunteer-project-ruby.git
+* Navigate to the downloaded repository using the terminal window.
+* Your computer must have Ruby installed.  In the terminal window at the working directory of the program, you will need to install some additional Ruby Gems files.  Do this by putting this on the command line while connected to the internet:
+
   "$ bundle install
+* Your computer must have Postgres installed.  To restore the SQL database, type the following commands at the terminal window of the project directory:
+
+  "$ createdb volunteers_tracker
+
+  "$ psql volunteers_tracker < my_database.sql
+
+  "$ createdb -T volunteers_tracker volunteers_tracker_test
+* Start the Postgres server on your local machine.  Do this by going to a new terminal window at the project directory, and typing:
+
+  "$ postgres
+  * The terminal window will need to stay open while Postgres is running.
+* If Postgres says it can't find the user, you may have to start Postgres as the default install user:
+
+  "$ postgres -U postgres
+* If Postgres is asking for a password, enter "123456".
 * To run the test cases, type at the terminal: $ rspec
-* To run the program itself, go to the command line, and set the current working directory the same as the project's folder.
-* Type $ ruby app.rb at the terminal
-* Open your web browser and head to https://localhost:4567 to start the application.
+* To run the program itself, go to the command line, and set the current working directory the same as the project's folder.  Type the following at the terminal:
+
+  "$ ruby app.rb
+* Afterwards, open your web browser and head to the address https://localhost:4567 to start the application.
 
 ## Technologies Used
 
-_Ruby, Sinatra framework, Atom, Postgres, SQL , HTML, Git._
+_Ruby, Sinatra framework, Bootstrap, Atom, Postgres, SQL , HTML, Git._
 
-## Behaviors
-
-###Allowable Alterations to the testing code:
-* You may alter a unit tet only if you are adding more attributes to volunteers or projects.
-* You may (and should) add more unit tests if you decide to add additional features or if there are any methods that aren't covered by the included tests..
-* You may alter the names of buttons and fields in the Capybara tests. You may also add additional tests. However, your integration specs should otherwise use the current provided tests unaltered.
-* If there is an error or bug in any of the tests, you may correct that error.
-
-###Requirements
+## Requirements
 * Create an application that tracks projects and the volunteers working on them. Each volunteer will belong to only one project (one project, many volunteers).
 
 The following user stories should be completed:
@@ -39,35 +52,40 @@ The following user stories should be completed:
 * As a non-profit employee, I want to view and add volunteers.
 * As a non-profit employee, I want to add volunteers to a project.
 
-###Additional Requirements
-* Please do not specify a Ruby version in your Gemfile. It makes it more difficult to review projects.
-* For this code review, please use the following names for your databases:
+* There is a pre-made spec testing and intergation testing code that will check the program.  It is found at:
+https://github.com/epicodus-lessons/volunt33r_track3r  
+
+#### Allowable Alterations to the testing code:
+* You may alter a unit test only if you are adding more attributes to volunteers or projects.
+* You may (and should) add more unit tests if you decide to add additional features or if there are any methods that aren't covered by the included tests..
+* You may alter the names of buttons and fields in the Capybara tests. You may also add additional tests. However, your integration specs should otherwise use the current provided tests unaltered.
+* If there is an error or bug in any of the tests, you may correct that error.
+
+#### Additional Requirements
+* Do not specify a Ruby version in your Gemfile.
+* These are the required names of the resources:
   * Production Database: volunteer_tracker
   * Development Database: volunteer_tracker_test
   * Resource names will be projects and volunteers
-* _When you are ready to submit your project, you must run the following bash command while you are in the root directory of your project:_
-
-$ pg_dump volunteer_tracker > my_database.sql
-
-* This will create a database dump called my_database.sql in your project's root directory. volunteer_tracker is the name of the database being dumped. Before you submit, confirm that the root directory of your repository contains my_database.sql. We will not review your code if this isn't properly set up.
+* A database copy must be made after writing the code.  Do this with Postgres by typing the following at the command line:
+    $ pg_dump volunteer_tracker > my_database.sql
 * Your README should also include any important instructions for setting up and using your project! You may want to review our lesson on READMEs.
 
 ## Specifications
 
-* Please enter text here.
+* The required tests for inputs and outputs are denoted in the following ruby spec test files:
 
-* Please describe something here.
-  * Input:  Please type something here.
-  * Output:  Please type something herer
+./spec/project_spec.rb
 
-* Please describe something here.
-  * Input:  Please type something here.
-  * Output:  Please type something here.
+./spec/volunteer_spec.rb
+
+./spec/volunteer_integration.rb
+
+* For the most part, the above test code is created by the course instructor, and modifications are generally not allowed.
 
 ## Known bugs
 
-* If there are any bugs, type them here.
-* If there are any bugs, type them here.
+* One of the spec tests appears to give a false fail because it is saying that an integer is detected as a string.  However, when you examine the value with binding.pry, the value is an integer.
 
 ### License
 
