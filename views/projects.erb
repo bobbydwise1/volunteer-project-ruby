@@ -21,8 +21,9 @@
       <hr></hr>
 
       <div>
+        <h6>List of volunteers currently assigned to this project:</h6>
         <ul>
-          <% if @current_volunteers != nil %>
+          <% if @current_volunteers != [] %>
               <% @currernt_volunteers.each do |volunteer| %>
                   <li>
                     <a href="/volunteers/<%= volunteer.id %>"><%= volunteer.id %>, <%= volunteer.name %>,

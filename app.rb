@@ -25,8 +25,7 @@ end
 get '/projects/:id' do
   id = params.fetch(:id).to_i
   @current_project = Project.find(id)
-  @current_volunteers = Volunteer.find_by_project_id(id)
-  binding.pry
+  @current_volunteers = @current_project.volunteers
   erb(:projects)
 end
 
