@@ -8,7 +8,7 @@
         <form action="/" method="post">
           <div>
             <label for="title">Enter a new Project title:</label>
-            <input id="title" class="form-control" type="text" name="title" placeholder="Enter a new Project title" pattern="[A-Za-z0-9\s]{1,128}" required title="No special characters.">
+            <input id="title" class="form-control" type="text" name="title" placeholder="Project title" pattern="[A-Za-z0-9\s]{1,128}" required title="No special characters.">
           </div>
 
           <hr></hr>
@@ -22,37 +22,54 @@
       <hr></hr>
 
       <div>
-        <% if @current_projects != nil %>
-        <p><b>current project id: </b><%=@current_project.id%></p>
-        <p><b>current project title: </b><%=@current_project.title%></p>
-        <%end%>
-
         <ul>
           <% if @projects != nil %>
               <% @projects.each do |project| %>
                   <li>
                     <a href="/projects/<%= project.id %>"><%= project.id %>, <%= project.title %></a>
                   </li>
-                </form>
               <% end %>
           <% end %>
       </ul>
       </div>
 
-    <!-- </div> -->
+    </div>
 <!------------------------------------------------->
-    <!-- <div class="col container"> -->
+    <div class="col container">
       <h1>Volunteers</h1>
+      <h5>Add a new volunteer here:</h5>
+      <form action="/volunteer" method="post">
+        <div>
+          <label for="name">Enter a new Volunteer Name:</label>
+          <input id="name" class="form-control" type="text" name="name" placeholder="Last, First" pattern="[A-Z][a-z]+[/,][\s][A-Z][a-z]+" required title="Please put in a proper 'Lastname, Firstname'">
+        </div>
 
-      <a href="/volunteer_view"> <button type="button">View Volunteers</button> </a>
+        <hr></hr>
+
+        <div class="button">
+        <button type="submit" name="button">Create Volunteer</button>
+        </div>
+      </form>
 
       <hr></hr>
 
-      <a href="/volunteer_add"> <button type="button">Add New Volunteers</button> </a>
-
-      <hr></hr>
-
-      <a href="/volunteer_add"> <button type="button">Assign Volunteers</button> </a>
+      <div>
+        <ul>
+          <% if @volunteers != nil binding.pry%>
+              <% @volunteers.each do |volunteer| %>
+                  <li>
+                    <a href="/volunteers/<%= volunteer.id %>"><%= volunteer.id %>, <%= volunteer.name %>,
+                      <% if volunteer.project_id != 0 %>
+                      <%= volunteer.project_id %>
+                      <% else %>
+                      No project assigned
+                      <% end %>
+                    </a>
+                  </li>
+              <% end %>
+          <% end %>
+      </ul>
+      </div>
 
     </div>
   </div>

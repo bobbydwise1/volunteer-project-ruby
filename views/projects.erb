@@ -20,6 +20,26 @@
 
       <hr></hr>
 
+      <div>
+        <ul>
+          <% if @current_volunteers != nil %>
+              <% @currernt_volunteers.each do |volunteer| %>
+                  <li>
+                    <a href="/volunteers/<%= volunteer.id %>"><%= volunteer.id %>, <%= volunteer.name %>,
+                      <% if volunteer.project_id != 0 %>
+                      <%= volunteer.project_id %>
+                      <% else %>
+                      No project assigned
+                      <% end %>
+                    </a>
+                  </li>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+
+      <hr></hr>
+
       <a href="/">Index</a>
 
     </div>

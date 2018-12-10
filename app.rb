@@ -25,6 +25,8 @@ end
 get '/projects/:id' do
   id = params.fetch(:id).to_i
   @current_project = Project.find(id)
+  @current_volunteers = Volunteer.find_by_project_id(id)
+  binding.pry
   erb(:projects)
 end
 
@@ -51,14 +53,11 @@ delete '/projects/:id/edit' do
   erb(:index)
 end
 
-# post '/project_update' do
-#   volunteer_name = params.fetch('volunteer_name')
-#   project_title = params.fetch('title')
-#   new_volunteer = Volunteer.new({:volunteer_name => volunteer_name, :project_id => project_id, :id => nil})
-#   new_volunteer.save
-#   new_project = Project.new({:title => project_title, :id => nil})
-#   project_id = new_project.save
-#   @volunteers = Volunteer.all
-#   @projects = Project.all
-#   erb(:project_update)
-# end
+post '/volunteer' do
+  volunteer_name = params.fetch('name')
+  new_volunteer = Volunteer.new({:name => volunteer_name, :project_id => nil.to_i, :id => nil})
+  volunteer_id = new_volunteer.save
+  @volunteers = Volunteer.all
+  @projects = Project.all
+  erb(:index)
+end
