@@ -21,11 +21,11 @@ _Setup requires the installation of Ruby and Postgres.  An additional Ruby "gem"
   "$ bundle install
 * Your computer must have Postgres installed.  To restore the SQL database, type the following commands at the terminal window of the project directory:
 
-  "$ createdb volunteers_tracker
+  "$ createdb volunteer_tracker
 
-  "$ psql volunteers_tracker < my_database.sql
+  "$ psql volunteer_tracker < my_database.sql
 
-  "$ createdb -T volunteers_tracker volunteers_tracker_test
+  "$ createdb -T volunteer_tracker volunteer_tracker_test
 * Start the Postgres server on your local machine.  Do this by going to a new terminal window at the project directory, and typing:
 
   "$ postgres
